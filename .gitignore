@@ -1,0 +1,3 @@
+*.txt
+privateToken.py
+__pycache__/
