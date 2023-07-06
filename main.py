@@ -1,7 +1,6 @@
 import discord
 from privateToken import myToken
 from privateToken import api
-
 import requests
 
 
