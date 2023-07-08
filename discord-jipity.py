@@ -1,6 +1,6 @@
 import discord
-from privateToken import myToken
-from privateToken import api
+from privateToken import Discord_api_K3y
+from privateToken import openAI_api_k3y
 import requests
 
 
@@ -17,7 +17,7 @@ url = "https://api.openai.com/v1/chat/completions"
 # Set the headers
 headers_request = {
     "Content-Type": "application/json",
-    "Authorization": f"Bearer {api()}"
+    "Authorization": f"Bearer {openAI_api_k3y()}"
 }
 
 
@@ -49,4 +49,4 @@ class MyClient(discord.Client):
 intents = discord.Intents.default()
 intents.message_content = True
 client = MyClient(intents=intents)
-client.run(myToken())
+client.run(Discord_api_K3y())
