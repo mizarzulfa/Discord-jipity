@@ -22,3 +22,23 @@ API requests to OpenAI without importing or using the OpenAI module. This provid
 ## Chat History / Remember Previous Conversation
 
 This feature is currently under development. The ability to store and recall chat history will be added in future updates.
+
+## Private Token Configuration
+
+This guide explains how to configure the `privateToken.py` file in your project to store and access your API keys securely.
+
+### Steps
+
+1. Create a new file named `privateToken.py` in the project directory.
+
+2. Copy the code below, replace the values `'YOUR_KEY'` with your actual API keys.
+
+   ```python
+   def Discord_api_K3y():
+       token = 'YOUR_DISCORD_API_KEY'
+       return token
+
+   def openAI_api_k3y():
+       secret = 'YOUR_OPENAI_API_KEY'
+       return secret
+
