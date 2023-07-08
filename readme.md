@@ -3,6 +3,7 @@
 - &#9745; OpenAI model list added, including GPT3.5 turbo, GPT-4, and text-davinci-003.
 - &#9745; Direct API request implemented without importing/using the OpenAI module.
 - &#9744; Chat History / Remember previous conversation
+- &#9744; GUI for exe file (user input box : openai key, discord bot api key)
 
 ## OpenAI Model List
 
