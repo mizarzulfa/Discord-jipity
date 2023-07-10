@@ -1,5 +1,6 @@
 import discord
 import requests
+import json
 import sys
 import threading
 import logging
@@ -24,6 +25,13 @@ def model_list():
 
 
 model = model_list()[1]
+max_messages = 8
+conversation = [
+                {"role": "system", "content": "You answer questions based on a provided context."}
+                # {"role": "assistant", "content": ""}
+                # {"role": "user", "content": ""}
+                # {"role": "user", "content": str(message.content)}
+                ]
 
 # Set the endpoint URL
 url = "https://api.openai.com/v1/chat/completions"
@@ -37,8 +45,8 @@ headers_request = {
 
 class MyClient(discord.Client):
     async def on_ready(self):
-        print('Logged on as', self.user)
-
+        print('Logged on as', self.user)              
+          
     async def on_message(self, message):
         # don't respond to ourselves
         if message.author == self.user:
@@ -47,23 +55,40 @@ class MyClient(discord.Client):
         # Set the payload (JSON data)
         payload = {
             "model": model,
-            "messages": [{"role": "user", "content": str(message.content)}],
+            "messages": conversation,
             "n": 1
+            # "max_tokens" : not set (integer)
         }
-
+        
+        def update_conversation_history(conversation, new_message):
+            conversation.append(new_message)
+            if len(conversation) > max_messages:
+                for delete in range(1,3):
+                    conversation.pop(delete)
+                # conversation.pop(1)
+                # conversation.pop(2)
+                    
+        new_message = {"role": "user", "content": str(message.content)}
+        update_conversation_history(conversation, new_message)
+                
         # Send the POST request
         response = requests.post(url, headers=headers_request, json=payload)
-        # Get the response JSON data
+        
+        # Get the response JSON data, arrange JSON data with JSON Module
         json_data = response.json()
+        print(json.dumps(json_data, indent=4))
+        print(len(conversation))
 
         chatjipiti_answer = json_data["choices"][0]["message"]["content"]
         await message.channel.send(chatjipiti_answer)
+        conversation.append({"role": "assistant", "content": chatjipiti_answer})
+        
+        await message.channel.send(f'Total tokens : {json_data["usage"]["total_tokens"]}')
 
 
 def log_print():
     log_output = log_stream.getvalue()
     print(log_output)
-
 
 class App(Frame):
     def __init__(self, master=None):
@@ -80,7 +105,7 @@ class App(Frame):
         current_time = time.strftime("%H:%M:%S")  # Get the current time
         # Update the timer label
         self.timer_label.config(text="Current Time: " + current_time)
-
+        
         self.after(2000, self.run_script)
         sys.stdout = sys.__stdout__
 
@@ -93,6 +118,7 @@ class App(Frame):
 
         self.button = Button(self, text="Trigger script",
                              command=self.run_script)
+        
         ##default##
         # self.button.pack(side=TOP)
         
