@@ -1,21 +1,14 @@
-
 import discord
-from privateToken import Discord_api_K3y
-from privateToken import openAI_api_k3y
 import requests
-
 import sys
-from tkinter import *
-
 import threading
-
 import logging
+import time
+from privateToken import Discord_api_K3y, openAI_api_k3y
+from tkinter import *
 from io import StringIO
 
-import time
-
-
-# Create a StringIO object to capture log messages as strings
+# a StringIO object to capture log messages as strings
 log_stream = StringIO()
 handler = logging.StreamHandler(log_stream)
 
@@ -100,7 +93,9 @@ class App(Frame):
 
         self.button = Button(self, text="Trigger script",
                              command=self.run_script)
+        ##default##
         # self.button.pack(side=TOP)
+        
         self.button.pack_forget()
         # Hide the button by using either of the following lines:
         # self.button.pack_forget()  # To completely remove the button from the layout
@@ -113,8 +108,6 @@ class App(Frame):
 root = Tk()
 app = App(master=root)
 
-# Define your Discord bot code and run it
-
 
 def run_discord_bot():
     intents = discord.Intents.default()
@@ -123,7 +116,7 @@ def run_discord_bot():
     client.run(Discord_api_K3y())
 
 
-# Create a separate thread for running the Discord bot
+# a separate thread for running the Discord bot
 discord_thread = threading.Thread(target=run_discord_bot)
 
 # Start the Discord bot thread
