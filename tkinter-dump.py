@@ -56,6 +56,8 @@ class MyClient(discord.Client):
         payload = {
             "model": model,
             "messages": conversation,
+            "temperature": 0.4,
+            "top_p": 0.5,
             "n": 1
             # "max_tokens" : not set (integer)
         }
