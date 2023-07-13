@@ -64,10 +64,23 @@ class MyClient(discord.Client):
         print(json.dumps(json_data, indent=4))
         print(len(conversation))
 
+        #Chunk messages
         chatjipiti_answer = json_data["choices"][0]["message"]["content"]
-        await message.channel.send(chatjipiti_answer)
-        conversation.append({"role": "assistant", "content": chatjipiti_answer})
+    
+        chunk_size = 1999
+        chunks = [chatjipiti_answer[i:i+chunk_size] for i in range(0, len(chatjipiti_answer), chunk_size)]
+
+        if len(chunks) > 1 and len(chunks[-1]) < chunk_size:
+            chunks[-2] += chunks[-1]
+            chunks.pop()
+
+        for i, chunk in enumerate(chunks):
+            new = chunk
+            # print(f"Chunk {i}: {new}")
+            await message.channel.send(new)
         
+        # await message.channel.send(chunks[0])
+        conversation.append({"role": "assistant", "content": chatjipiti_answer})
         await message.channel.send(f'Total tokens : {json_data["usage"]["total_tokens"]}')
 
 intents = discord.Intents.default()
