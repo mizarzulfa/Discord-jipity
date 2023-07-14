@@ -32,10 +32,6 @@ API requests to OpenAI without importing or using the OpenAI module. This provid
 
 functionality for storing and recalling previous chat conversations.
 
-## Private Token Configuration
-
-This guide explains how to configure the `privateToken.py` file in your project to store and access your API keys securely.
-
 ## Discord max length character
 Work in progress to handle splitting messages when they reach the maximum character limit of 2000.
 
@@ -51,6 +47,11 @@ a button for copying the full responses
 
 ## GUI for exe file
  In progress, creating a graphical user interface for an executable file with user input boxes for OpenAI key and Discord bot API key.
+
+
+## Private Token Configuration
+
+This guide explains how to configure the `privateToken.py` file in your project to store and access your API keys securely.
 
 ### How To Get Started
 
