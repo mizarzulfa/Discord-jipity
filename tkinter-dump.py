@@ -20,7 +20,7 @@ logger.addHandler(handler)
 
 
 def model_list():
-    list = {1: "gpt-3.5-turbo", 2: "gpt-4", 3: "text-davinci-003"}
+    list = {1: "gpt-3.5-turbo-16k-0613", 2: "gpt-4", 3: "text-davinci-003"}
     return list
 
 
@@ -81,7 +81,7 @@ class MyClient(discord.Client):
         #Chunk messages
         chatjipiti_answer = json_data["choices"][0]["message"]["content"]
     
-        chunk_size = 1999
+        chunk_size = 999
         chunks = [chatjipiti_answer[i:i+chunk_size] for i in range(0, len(chatjipiti_answer), chunk_size)]
 
         if len(chunks) > 1 and len(chunks[-1]) < chunk_size:
