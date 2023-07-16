@@ -7,6 +7,7 @@ This checklist represents the progress I made so far on the Discord-jipity proje
 | OpenAI model list                             | &#9745;     |
 | Direct API request without using OpenAI module| &#9745;     |
 | Chat History / Remember previous conversation | &#9745;     |      | v1 &#9745;
+| The Ability to edit message                   | &#9745;     |
 | Discord max length character (2000) 'hacks'   | &#9744;     |
 | Store appended chat as JSON                   | &#9744;     |
 | "Temperature" button inside Discord           | &#9744;     |
