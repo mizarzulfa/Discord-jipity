@@ -14,6 +14,7 @@ This checklist represents the progress I made so far on the Discord-jipity proje
 | "Max length" button inside Discord            | &#9744;     |
 | COPY button inside Discord chat               | &#9744;     |
 | GUI for exe file                              | &#9744;     |
+| Langchain Integration                         | &#9744;     |
 
 ## OpenAI Model List
 
