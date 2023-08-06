@@ -15,6 +15,12 @@ This checklist represents the progress I made so far on the Discord-jipity proje
 | COPY button inside Discord chat               | &#9744;     |
 | GUI for exe file                              | &#9744;     |
 | Langchain Integration                         | &#9744;     |
+| Guests with limited access & subscription?    | &#9744;     |
+| Clear Chat History to reduce token generation | &#9744;     |
+| Prevent bot from responding to pinned messages| &#9744;     |
+| restart the server based on Discord activity  | &#9744;     |      | faster speed
+
+
 
 ## OpenAI Model List
 
