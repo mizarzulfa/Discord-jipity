@@ -4,7 +4,7 @@ This checklist represents the progress I made so far on the Discord-jipity proje
 
 | Task                                         | Status |            | Description |
 |----------------------------------------------|--------|------------|-------------|
-| OpenAI model list                             | &#10004;     |      | v1 &#10004;
+| OpenAI model list                             | &#10004;     |
 | Direct API request without using OpenAI module| &#10004;     |
 | Chat History / Remember previous conversation | &#10004;     |      | v1 &#10004;
 | The Ability to edit message                   | &#10004;     |
@@ -18,42 +18,11 @@ This checklist represents the progress I made so far on the Discord-jipity proje
 
 ## OpenAI Model List
 
-The Discord-jipity project now supports the following OpenAI models:
+The Discord-jipity project supports the following OpenAI models:
 
 - GPT-3.5-turbo-16k-0613
 - GPT-4
 - text-davinci-003
-
-To use any of these models, refer to the project documentation for further instructions.
-
-## Direct API Request
-
-API requests to OpenAI without importing or using the OpenAI module. This provides more flexibility and control over the integration process. Detailed documentation on how to make direct API requests will be provided soon.
-
-## Chat History / Remember Previous Conversation
-
-functionality for storing and recalling previous chat conversations.
-
-## Discord max length character
-Work in progress to handle splitting messages when they reach the maximum character limit of 2000.
-
-## Store appended chat as JSON
-Currently being developed to store chat conversations in JSON format, enabling saving and retrieval of conversations.
-
-## "Temperature" button inside Discord
-Future implementation of a button to control the accuracy of GPT responses in Discord.
-"Max length" button inside Discord: Planned feature to control the maximum length of GPT responses in Discord.
-
-## COPY button inside Discord chat 
-a button for copying the full responses
-
-## GUI for exe file
- In progress, creating a graphical user interface for an executable file with user input boxes for OpenAI key and Discord bot API key.
-
-
-## Private Token Configuration
-
-This guide explains how to configure the `privateToken.py` file in your project to store and access your API keys securely.
 
 ### How To Get Started
 
