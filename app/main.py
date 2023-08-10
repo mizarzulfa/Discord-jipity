@@ -1,34 +1,24 @@
 import discord
+from privateToken import Discord_api_K3y, openAI_api_k3y
 import requests
 import json
-import sys
-import threading
-import logging
-import time
-from privateToken import Discord_api_K3y, openAI_api_k3y
-from tkinter import *
-from io import StringIO
-import asyncio
+import argparse
 
-# a StringIO object to capture log messages as strings
-log_stream = StringIO()
-handler = logging.StreamHandler(log_stream)
-
-# Configure the logger to capture all log messages from discord and add the handler
-logger = logging.getLogger('discord')
-logger.setLevel(logging.INFO)
-logger.addHandler(handler)
-
+parser = argparse.ArgumentParser(description="Run the Discord bot")
+parser.add_argument("--run", action="store_true", help="Run the bot")
+args = parser.parse_args()
 
 # Dictionary to store the bot's messages
 bot_messages = {}
 
 def model_list():
-    list = {1: "gpt-3.5-turbo-16k-0613", 2: "gpt-4", 3: "text-davinci-003"}
+    list = {
+        1: "gpt-3.5-turbo",
+        2: "gpt-4-0613",
+        3: "text-davinci-003"}
     return list
 
-
-model = model_list()[1]
+model = model_list()[2]
 max_messages = 8
 
 def update_conversation_history(conversation, new_message):
@@ -170,71 +160,15 @@ class MyClient(discord.Client):
         bot_messages[before.author.id]["response2"] = bot_response2
         print(len(conversation))
 
-
-def log_print():
-    log_output = log_stream.getvalue()
-    print(log_output)
-
-class App(Frame):
-    def __init__(self, master=None):
-        super().__init__(master)
-        self.pack()
-        self.build_widgets()
-        self.run_script()  # Call the run_script() method immediately after initializing the App
-
-    def run_script(self):
-        sys.stdout = self
-        self.text1.delete(1.0, END)  # Clear the text area
-        log_print()
-
-        current_time = time.strftime("%H:%M:%S")  # Get the current time
-        # Update the timer label
-        self.timer_label.config(text="Current Time: " + current_time)
-        
-        self.after(2000, self.run_script)
-        sys.stdout = sys.__stdout__
-
-    def build_widgets(self):
-        self.text1 = Text(self)
-        self.text1.pack(side=TOP)
-
-        self.timer_label = Label(self, text="Current Time: ")
-        self.timer_label.pack(side=TOP)
-
-        self.button = Button(self, text="Trigger script",
-                             command=self.run_script)
-        
-        ##default##
-        # self.button.pack(side=TOP)
-        
-        self.button.pack_forget()
-        # Hide the button by using either of the following lines:
-        # self.button.pack_forget()  # To completely remove the button from the layout
-        # self.button.config(state=DISABLED)  # To disable the button, making it grayed out and unclickable
-
-    def write(self, txt):
-        self.text1.insert(INSERT, txt)
-
-
-root = Tk()
-app = App(master=root)
-
-
-def run_discord_bot():
+def main_x():
     intents = discord.Intents().all()
     client = MyClient(intents=intents)
     client.run(Discord_api_K3y())
 
-
-# Create and run the event loop in the separate thread
-def discord_thread_func():
-    loop = asyncio.new_event_loop()
-    asyncio.set_event_loop(loop)
-    loop.run_until_complete(run_discord_bot())
-    loop.close()
-
-# Start the Discord bot thread
-discord_thread = threading.Thread(target=discord_thread_func)
-discord_thread.start()
-
-app.mainloop()
+if args.run:
+    main_x()
+    
+if __name__ == "__main__":
+    print("This script cannot be executed directly.")
+    print("It should be imported as a module.")
+    print("or run it using argument 'current path file' '--run")

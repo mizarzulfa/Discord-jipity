@@ -1,7 +1,7 @@
 ## Discord members ongoing development
 import discord
 from discord.ext import commands
-from privateToken import Discord_api_K3y
+from app.privateToken import Discord_api_K3y
 import asyncio
 from datetime import datetime
 
